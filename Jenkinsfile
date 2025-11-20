@@ -1,11 +1,15 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'MAVEN_HOME'
+    }
+
     stages {
+
         stage('Checkout') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/farookp43/java_hello_students.git'
+                git branch: 'main', url: 'https://github.com/farookp43/java_hello_students.git'
             }
         }
 
