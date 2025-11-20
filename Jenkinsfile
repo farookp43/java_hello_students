@@ -6,7 +6,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/mohamadfarook/java_hello_student.git'
+                    url: 'https://github.com/farookp43/java_hello_student.git'
             }
         }
 
