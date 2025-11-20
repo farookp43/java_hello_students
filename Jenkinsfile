@@ -2,37 +2,35 @@ pipeline {
     agent any
 
     stages {
-
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/farookp43/java_hello_student.git'
+                    url: 'https://github.com/farookp43/java_hello_students.git'
             }
         }
 
         stage('Build JAR') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                bat 'mvn clean package'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t java_hello_student_image .'
+                bat 'docker build -t hello_students .'
             }
         }
 
         stage('Run Docker Container') {
             steps {
-                sh 'docker run -d --name java_hello_student_container java_hello_student_image'
+                bat 'docker run -d -p 8080:8080 hello_students'
             }
         }
     }
 
     post {
         always {
-            sh 'docker ps -a'
+            bat 'echo Pipeline complete'
         }
     }
 }
-
